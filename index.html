@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Bhavantu — Cocina · Energía · Presencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600;700&family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#3e6b63;
+  --verde-oscuro:#24423e;
+  --dorado:#c8a84b;
+  --dorado-crema:#8a6a1a;
+  --dorado-verde:#e8c96a;
+  --crema:#f5f0e6;
+  --crema-oscura:#ede8dc;
+  --blanco:#fff;
+  --texto-oscuro:#1a2b27;
+  --texto-medio:#3a4f4b;
+  --tsb:rgba(255,255,255,0.72);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--crema);color:var(--texto-oscuro);overflow-x:hidden;}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--verde-oscuro);border-top:2px solid var(--dorado);padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:16px;}
+.sticky-bar span{font-size:13px;color:var(--tsb);white-space:nowrap;}
+.sticky-bar .price-sticky{color:var(--dorado);font-weight:700;font-size:17px;}
+
+.btn-verde{display:inline-block;background:#40c350;color:#fff;font-family:'Jost',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;padding:16px 36px;border-radius:50px;border:none;cursor:pointer;transition:all 0.3s ease;white-space:nowrap;box-shadow:0 4px 20px rgba(64,195,80,0.3);}
+.btn-verde:hover{background:#36b045;transform:translateY(-2px);}
+.btn-verde-sm{padding:11px 24px;font-size:13px;}
+
+.hero{background:var(--verde-oscuro);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px 100px;position:relative;overflow:hidden;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,168,75,0.12);border:1px solid rgba(200,168,75,0.35);border-radius:50px;padding:6px 18px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dorado);margin-bottom:28px;}
+.hero h1{font-family:'Jost',sans-serif;font-size:clamp(48px,11vw,82px);font-weight:700;line-height:1.05;color:#fff;margin-bottom:12px;}
+.hero h1 em{font-style:normal;color:var(--dorado);}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,4.5vw,26px);font-weight:600;color:var(--tsb);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:36px;white-space:nowrap;}
+.hero-phone{position:relative;margin-bottom:44px;}
+.hero-phone video{width:min(260px,68vw);border-radius:28px;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.55));}
+.hero-price-old{font-size:15px;color:var(--tsb);text-decoration:line-through;margin-bottom:4px;}
+.hero-price-new{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:700;color:var(--dorado);line-height:1;}
+.hero-price-desc{font-size:15px;color:var(--crema);margin-top:6px;line-height:1.7;}
+.hero-cta{margin:24px 0 16px;}
+.hero-garantia{font-size:15px;color:var(--crema);margin-bottom:20px;}
+.hero-garantia strong{color:var(--dorado);}
+.payment-logos{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.pay-logo{background:rgba(245,240,230,0.15);border:1px solid rgba(245,240,230,0.4);border-radius:6px;padding:6px 12px;font-size:13px;color:var(--crema);font-weight:500;}
+
+.sec-crema{background:var(--crema);padding:80px 24px;color:var(--texto-oscuro);}
+.sec-crema-alt{background:var(--crema-oscura);padding:80px 24px;color:var(--texto-oscuro);}
+.sec-verde{background:var(--verde-oscuro);padding:80px 24px;color:#fff;}
+.sec-inner{max-width:600px;margin:0 auto;}
+
+.sec-label{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:block;font-weight:600;color:var(--dorado-crema);}
+.sec-verde .sec-label{color:var(--dorado-verde);}
+
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,7vw,52px);font-weight:600;line-height:1.12;margin-bottom:40px;color:var(--texto-oscuro);}
+h2 em{font-style:italic;color:var(--dorado-crema);}
+.sec-verde h2{color:#fff;}
+.sec-verde h2 em{color:var(--dorado-verde);}
+.cta-final h2{color:#fff;text-align:center;}
+.cta-final h2 em{color:var(--dorado-verde);}
+
+.divider{width:48px;height:2px;background:var(--dorado);margin:0 auto 40px;opacity:0.6;}
+
+.dolor-list{list-style:none;}
+.dolor-list li{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid rgba(26,43,39,0.1);font-size:17px;line-height:1.55;color:var(--texto-medio);}
+.dolor-list li:last-child{border-bottom:none;}
+.dolor-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.dolor-list li strong{color:var(--texto-oscuro);}
+
+.features-grid{display:flex;flex-direction:column;gap:12px;margin-top:40px;}
+.feature-card{background:var(--crema);border:1px solid rgba(26,43,39,0.1);border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:all 0.25s ease;}
+.feature-card:hover{background:var(--crema-oscura);border-color:rgba(138,106,26,0.4);}
+.feature-icon{font-size:24px;flex-shrink:0;margin-top:1px;}
+.feature-card h3{font-size:17px;font-weight:600;margin-bottom:4px;color:var(--texto-oscuro);}
+.feature-card p{font-size:15px;color:var(--texto-medio);line-height:1.5;}
+
+.logros-list{list-style:none;display:flex;flex-direction:column;gap:24px;margin-top:40px;}
+.logros-list li{display:flex;gap:18px;align-items:flex-start;}
+.logro-num{width:38px;height:38px;border:2px solid var(--dorado-crema);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dorado-crema);flex-shrink:0;}
+.logros-list li p{font-size:17px;line-height:1.6;color:var(--texto-medio);}
+.logros-list li strong{color:var(--texto-oscuro);}
+
+.rating-global{display:flex;align-items:center;gap:14px;margin-bottom:32px;}
+.rating-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--dorado-verde);line-height:1;}
+.rating-info{font-size:14px;color:rgba(255,255,255,0.62);}
+.rating-info strong{color:#fff;}
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:480px){.reviews-grid{grid-template-columns:1fr;}}
+.review-card{background:var(--crema);border:1px solid rgba(26,43,39,0.1);border-radius:14px;padding:18px;}
+.review-stars{color:var(--dorado-crema);font-size:16px;margin-bottom:9px;}
+.review-text{font-size:15px;line-height:1.65;color:var(--texto-medio);font-style:italic;margin-bottom:12px;}
+.review-author{font-size:15px;font-weight:600;color:var(--texto-oscuro);}
+
+.equipo-block{display:flex;flex-direction:column;gap:28px;margin-top:44px;}
+.equipo-person{background:#fff;border-radius:20px;padding:28px;box-shadow:0 2px 24px rgba(26,43,39,0.08);display:flex;flex-direction:column;gap:14px;}
+.equipo-foto{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--dorado-crema);}
+.equipo-role{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dorado-crema);margin-bottom:2px;font-weight:600;}
+.equipo-person h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--texto-oscuro);}
+.equipo-person p{font-size:15px;line-height:1.7;color:var(--texto-medio);}
+.firma-adriana{font-family:'Great Vibes',cursive;font-size:20px;color:var(--dorado-crema);margin-top:4px;line-height:1.3;}
+.firma-nora{font-family:'Dancing Script',cursive;font-size:17px;color:var(--dorado-crema);margin-top:4px;line-height:1.3;}
+
+.garantia-box{background:#fff;border-radius:24px;padding:44px 32px;text-align:center;box-shadow:0 4px 32px rgba(26,43,39,0.08);}
+.garantia-icon{font-size:52px;margin-bottom:16px;}
+.garantia-box h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--texto-oscuro);margin-bottom:14px;}
+.garantia-box p{font-size:15px;line-height:1.7;color:var(--texto-medio);}
+.garantia-box a{color:var(--verde);font-weight:600;}
+
+.faq-list{list-style:none;margin-top:40px;}
+.faq-item{border-bottom:1px solid rgba(26,43,39,0.1);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;font-size:15px;font-weight:500;color:var(--texto-oscuro);gap:16px;user-select:none;transition:color 0.2s;}
+.faq-q:hover{color:var(--verde);}
+.faq-arrow{color:var(--verde);font-size:22px;transition:transform 0.3s ease;flex-shrink:0;}
+.faq-item.open .faq-arrow{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 0 18px;font-size:14px;line-height:1.7;color:var(--texto-medio);}
+.faq-item.open .faq-a{display:block;}
+
+.cta-final{background:var(--verde-oscuro);padding:100px 24px 140px;text-align:center;position:relative;overflow:hidden;}
+.cta-final p{color:var(--tsb);margin-bottom:36px;font-size:17px;}
+.cta-price-old{font-size:16px;color:var(--tsb);text-decoration:line-through;margin-bottom:4px;}
+.cta-price-new{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:700;color:var(--dorado);line-height:1;margin-bottom:8px;}
+.cta-price-urgencia{font-size:16px;color:var(--dorado-verde);margin-bottom:32px;}
+
+footer{background:#111e1b;padding:28px 24px 100px;text-align:center;font-size:12px;color:rgba(255,255,255,0.35);}
+footer a{color:rgba(255,255,255,0.45);text-decoration:none;}
+footer a:hover{color:var(--dorado);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:all 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-badge">✦ App de Bienestar Integral</div>
+  <h1>Adiós hinchazón<br>y cansancio<br><em>en 7 días</em></h1>
+  <p class="hero-sub">Cocina · Energía · Presencia</p>
+  <div class="hero-phone">
+    <video autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div style="margin-bottom:28px;">
+    <div class="hero-price-old">Precio normal: 39,90 €</div>
+    <div class="hero-price-new">14,90 €</div>
+    <div class="hero-price-desc">Un solo pago · Acceso de por vida<br>Sin suscripción</div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://buy.stripe.com/28EcMY0dz9AEbXfg1D97G00" class="btn-verde">QUIERO LA APP AHORA</a>
+  </div>
+  <div class="hero-garantia"><strong>✓ Garantía de devolución 7 días</strong><br>Acceso inmediato</div>
+  <div class="payment-logos">
+    <span class="pay-logo">🔒 Pago seguro</span>
+    <span class="pay-logo">Visa</span>
+    <span class="pay-logo">Mastercard</span>
+    <span class="pay-logo">Apple Pay</span>
+    <span class="pay-logo">Google Pay</span>
+  </div>
+</section>
+
+<section class="sec-crema">
+  <div class="sec-inner">
+    <span class="sec-label reveal">¿Te suena familiar?</span>
+    <h2 class="reveal">Lo que sientes<br><em>cada día</em></h2>
+    <ul class="dolor-list">
+      <li class="reveal"><span class="dolor-icon">🫀</span><span>Te sientes <strong>hinchada a diario</strong> y tu cuerpo no acaba de sentirse ligero</span></li>
+      <li class="reveal"><span class="dolor-icon">⚡</span><span>Tu energía <strong>cae en picado</strong> a media tarde y llegas agotada al final del día</span></li>
+      <li class="reveal"><span class="dolor-icon">🌙</span><span><strong>Duermes, pero no descansas</strong> y tu barriga lo nota al día siguiente</span></li>
+      <li class="reveal"><span class="dolor-icon">🔄</span><span>Has <strong>probado mil dietas</strong> y ninguna ha funcionado a largo plazo</span></li>
+      <li class="reveal"><span class="dolor-icon">🌿</span><span>Quieres <strong>recetas rápidas y sencillas</strong> sin renunciar al sabor ni al bienestar</span></li>
+      <li class="reveal"><span class="dolor-icon">✨</span><span>Sientes que <strong>algo más profundo</strong> influye en cómo comes y cómo te sientes</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec-verde">
+  <div class="sec-inner">
+    <span class="sec-label reveal" style="text-align:center">Esto es diferente</span>
+    <h2 class="reveal" style="text-align:center">No es solo<br>un recetario</h2>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card reveal"><span class="feature-icon">🧘</span><div><h3>Centros energéticos</h3><p>Evalúa cuál de tus chakras necesita más atención ahora mismo y descubre qué alimentos se asocian a él</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">📊</span><div><h3>Perfil nutricional personalizado</h3><p>Creado según cómo eres tú, no una plantilla genérica</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">🍽️</span><div><h3>901 recetas saludables</h3><p>Sin azúcar · Sin gluten · Keto · Low Carb · Antiinflamatoria</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">📅</span><div><h3>Planner semanal</h3><p>Planifica tu semana y consulta tus macros diarios al instante</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">🌙</span><div><h3>Ayuno intermitente</h3><p>4 planes con temporizador integrado — 16:8, 5:2, 6:1 y 24h</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">🏆</span><div><h3>Retos del día</h3><p>Completa tu racha diaria y gana badges de hitos 7, 14, 21 y 30 días</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">🎧</span><div><h3>Camino interior</h3><p>31 días para transformar tu alimentación, energía y presencia desde adentro</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">📓</span><div><h3>Workbook personal</h3><p>Tu diario de reflexiones y respuestas guardadas para siempre</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">💧</span><div><h3>Medidor de agua diaria</h3><p>Controla tu hidratación y alcanza tu objetivo cada día</p></div></div>
+      <div class="feature-card reveal"><span class="feature-icon">♾️</span><div><h3>Todas las actualizaciones futuras</h3><p>La app crece y tú estás dentro, para siempre</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-crema-alt">
+  <div class="sec-inner">
+    <span class="sec-label reveal">Tu transformación</span>
+    <h2 class="reveal">Lo que vas<br>a <em>lograr</em></h2>
+    <ul class="logros-list">
+      <li class="reveal"><span class="logro-num">1</span><p>Sabrás exactamente <strong>qué comer</strong> para sentirte saciada, ligera y con energía estable todo el día</p></li>
+      <li class="reveal"><span class="logro-num">2</span><p><strong>Cocinarás rico</strong> en poco tiempo, sin complicarte ni sacrificar tu bienestar</p></li>
+      <li class="reveal"><span class="logro-num">3</span><p>Conocerás <strong>alternativas naturales</strong> a azúcares y harinas refinadas para reducir la inflamación desde adentro</p></li>
+      <li class="reveal"><span class="logro-num">4</span><p><strong>Dejarás de comer por ansiedad</strong> y empezarás a escuchar lo que tu cuerpo realmente necesita</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec-verde">
+  <div class="sec-inner">
+    <span class="sec-label reveal" style="text-align:center">Resultados reales</span>
+    <h2 class="reveal" style="text-align:center">Lo que dicen<br>quienes ya la usan</h2>
+    <div class="divider"></div>
+    <div class="rating-global reveal">
+      <span class="rating-num">4.72</span>
+      <div class="rating-info">
+        <div style="color:var(--dorado-verde);font-size:16px">★★★★★</div>
+        <strong>236 valoraciones</strong><br><span>Verificadas ✓</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">La mejor app que he probado. Pagué solo el acceso, me olvidé de la suscripción mensual y además es completísima, todo en uno.</p><div class="review-author">Alba M.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Increíble, está muy buena esta app, tiene de todo por ese precio. ¡Una ganga!</p><div class="review-author">Alberto M.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Lo que más me sorprendió fue la evaluación energética. Me mostró cuál de mis chakras necesita mayor atención. Muy completa.</p><div class="review-author">Marta P.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Elegir recetas por chakras para mi planner me encanta. Equilibrio en alimentación y en energía.</p><div class="review-author">Adriana T.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Las recetas keto y antiinflamatorias me hicieron fácil mantenerme en mi dieta. ¡Un cambio total!</p><div class="review-author">Juan G.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">No pensé que a los 50 años con mis desajustes hormonales las recetas keto serían tan efectivas. ¡Recomiendo la app absolutamente!</p><div class="review-author">Susana C.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Hacer el planner semanal con solo elegir qué receta me apetece y con el total de calorías por día es muy útil y sencillo. ¡Me encanta!</p><div class="review-author">Isabel R.</div></div>
+      <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">Me encantó el perfil nutricional. No solo muestra calorías, también recomendaciones para mantener el peso. Muy completa.</p><div class="review-author">Laura G.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-crema">
+  <div class="sec-inner">
+    <span class="sec-label reveal">Las personas detrás</span>
+    <h2 class="reveal">Equipo Bhavantu</h2>
+    <div class="equipo-block">
+      <div class="equipo-person reveal">
+        <img src="yo___.png" alt="Adriana Losa" class="equipo-foto">
+        <div><div class="equipo-role">Creadora · Sistema energético</div><h3>Adriana Losa</h3></div>
+        <p>Neuropsicología, Mindfulness e Integración Emocional aplicados para transformar hábitos desde la raíz. Ordenada en la Tradición Budista Mahajrya, la base espiritual de la app.</p>
+        <p><strong style="color:var(--texto-oscuro)">Lo que comes no es solo nutrición. Es energía.</strong></p>
+        <div class="firma-adriana">Adriana Losa</div>
+      </div>
+      <div class="equipo-person reveal">
+        <img src="Nora_Parker-modified.png" alt="Nora Parker" class="equipo-foto">
+        <div><div class="equipo-role">Nutricionista holística · Recetas</div><h3>Nora Parker</h3></div>
+        <p>Nutricionista holística y colaboradora en la creación de las recetas. Las creé porque comer saludable no debería ser una lucha.</p>
+        <p><strong style="color:var(--texto-oscuro)">La diferencia no está solo en las recetas, sino en cómo alimentas tu cuerpo día a día.</strong></p>
+        <div class="firma-nora">Nora Parker</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-crema-alt">
+  <div class="sec-inner">
+    <div class="garantia-box reveal">
+      <div class="garantia-icon">🛡️</div>
+      <h3>Garantía de devolución 7 días</h3>
+      <p>Si en 7 días no estás satisfecha, te devolvemos el 100% sin preguntas. Escríbenos a <a href="mailto:pedidos@portalbhavantu.com">pedidos@portalbhavantu.com</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec-crema">
+  <div class="sec-inner">
+    <span class="sec-label reveal">Resolvemos tus dudas</span>
+    <h2 class="reveal">Preguntas<br>frecuentes</h2>
+    <ul class="faq-list">
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Cuándo y cómo recibo el acceso?</span><span class="faq-arrow">+</span></div><div class="faq-a">Inmediatamente después de la compra recibirás un email con tu enlace de acceso. Entras con tu correo, sin contraseña. El proceso es automático y tarda menos de 1 minuto.</div></li>
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Funciona en iPhone y Android?</span><span class="faq-arrow">+</span></div><div class="faq-a">Sí, funciona en iPhone y Android. Se abre desde el navegador y puedes añadirla a la pantalla de inicio como si fuera una app nativa — en un toque la tienes siempre a mano.</div></li>
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Es un pago único o hay suscripción?</span><span class="faq-arrow">+</span></div><div class="faq-a">Es un pago único. Accedes de por vida sin ninguna suscripción mensual ni renovación automática. Pagas una vez y es tuyo para siempre.</div></li>
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Tendré acceso para siempre?</span><span class="faq-arrow">+</span></div><div class="faq-a">Sí. Además, todas las actualizaciones futuras están incluidas. La app sigue creciendo y tú estarás dentro sin pagar nada más.</div></li>
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Por qué invertir si hay contenido gratis en internet?</span><span class="faq-arrow">+</span></div><div class="faq-a">El contenido gratuito es genérico y disperso. Aquí tienes todo integrado: tu perfil nutricional, tus chakras, tus recetas, tu planner, tu programa de meditación y tu workbook — en un solo lugar, diseñado para que funcione junto.</div></li>
+      <li class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>¿Y si tengo algún problema?</span><span class="faq-arrow">+</span></div><div class="faq-a">Escríbenos a pedidos@portalbhavantu.com y te respondemos en menos de 24h.</div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-final" id="comprar">
+  <div class="sec-inner">
+    <span class="sec-label reveal" style="text-align:center;display:block;color:var(--dorado-verde)">Empieza hoy</span>
+    <h2 class="reveal">Tu cuerpo lo va a notar<br>desde la <em>primera semana</em></h2>
+    <div class="divider"></div>
+    <p class="reveal">Un solo pago · Sin suscripciones · Acceso de por vida</p>
+    <div class="reveal">
+      <div class="cta-price-old">Precio normal: 39,90 €</div>
+      <div class="cta-price-new">14,90 €</div>
+      <div class="cta-price-urgencia">Precio especial — accede antes que termine la promoción</div>
+      <a href="https://buy.stripe.com/28EcMY0dz9AEbXfg1D97G00" class="btn-verde" style="font-size:17px;padding:20px 48px">ACCEDER A LA APP AHORA</a>
+      <div style="margin-top:20px;font-size:16px;color:rgba(255,255,255,0.6)">🛡️ Garantía 7 días · 🔒 Pago seguro</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Bhavantu. Todos los derechos reservados.</p>
+  <p style="margin-top:8px">
+    <a href="#" onclick="showLegal('aviso');return false;">Aviso Legal</a> · 
+    <a href="#" onclick="showLegal('privacidad');return false;">Política de Privacidad</a> · 
+    <a href="#" onclick="showLegal('cookies');return false;">Política de Cookies</a>
+  </p>
+</footer>
+
+<div class="sticky-bar">
+  <span>Un pago único</span>
+  <span class="price-sticky">14,90 €</span>
+  <a href="https://buy.stripe.com/28EcMY0dz9AEbXfg1D97G00" class="btn-verde btn-verde-sm">QUIERO LA APP</a>
+</div>
+
+<!-- POPUP COOKIES -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:80px;left:0;right:0;z-index:998;padding:0 16px;">
+  <div style="background:#1a2b27;border:1px solid rgba(212,183,120,0.3);border-radius:16px;padding:24px;max-width:600px;margin:0 auto;">
+    <p style="font-size:14px;color:#fff;line-height:1.7;margin:0 0 8px;font-family:'Jost',sans-serif;font-weight:600;">Información sobre cookies</p>
+    <p style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.7;margin:0 0 18px;font-family:'Jost',sans-serif;">Este sitio web utiliza cookies propias técnicas, necesarias para su correcto funcionamiento y para el procesamiento seguro de pagos a través de Stripe, y cookies analíticas para mejorar la experiencia de navegación. En cumplimiento del artículo 22.2 de la LSSI-CE y el RGPD, le informamos de que las cookies técnicas no requieren consentimiento previo al ser estrictamente necesarias para la prestación del servicio. Las cookies analíticas y de terceros sí requieren su consentimiento. Puede aceptar todas las cookies, rechazar las no esenciales o consultar nuestra Política de Cookies para más información. Rechazar las cookies no esenciales no afectará a su capacidad de realizar compras ni de acceder al servicio.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button onclick="acceptCookies('all')" style="background:#40c350;color:#fff;border:none;padding:10px 22px;border-radius:50px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Aceptar todas</button>
+      <button onclick="acceptCookies('essential')" style="background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.25);padding:10px 22px;border-radius:50px;font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;">Rechazar no esenciales</button>
+      <button onclick="showLegal('cookies');return false;" style="background:transparent;color:rgba(255,255,255,0.5);border:none;padding:10px 0;font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;text-decoration:underline;">Política de Cookies</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL LEGAL -->
+<div id="legal-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.7);overflow-y:auto;">
+  <div style="background:#f5f0e6;max-width:720px;margin:40px auto;border-radius:16px;overflow:hidden;">
+    <div style="background:#24423e;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <h2 id="legal-title" style="font-family:'Cormorant Garamond',serif;color:#fff;font-size:22px;font-weight:400;margin:0;"></h2>
+      <button onclick="closeLegal()" style="background:none;border:none;color:#d4b778;font-size:24px;cursor:pointer;padding:0;">✕</button>
+    </div>
+    <div id="legal-content" style="padding:32px 28px;font-family:'Jost',sans-serif;font-size:15px;line-height:1.8;color:#3a4f4b;"></div>
+  </div>
+</div>
+
+<script>
+function toggleFaq(el){el.parentElement.classList.toggle('open');}
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// COOKIES BANNER
+if(!localStorage.getItem('bhavantu_cookies_v2')){
+  document.getElementById('cookie-banner').style.display='block';
+}
+function acceptCookies(type){
+  localStorage.setItem('bhavantu_cookies_v2',type);
+  document.getElementById('cookie-banner').style.display='none';
+}
+
+// LEGAL MODAL
+const legalTexts = {
+  aviso: {
+    title: 'Aviso Legal',
+    content: `<p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), Portal Bhavantu pone a disposición de los usuarios la siguiente información.</p>
+    <p>Portal Bhavantu es una plataforma online dedicada a la venta de productos digitales, concretamente una aplicación de bienestar y contenido digital relacionado con nutrición, energía y presencia. El acceso y uso de este sitio web implica la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios ofrecidos.</p>
+    <p>Todos los contenidos de este sitio web (textos, imágenes, diseños, logotipos, recetas, fotografías) son propiedad de Portal Bhavantu y están protegidos por las leyes de propiedad intelectual e industrial. Queda prohibida la reproducción, distribución, comunicación pública o transformación de los contenidos sin autorización expresa del titular.</p>
+    <p>Los datos personales recabados a través de este sitio web serán tratados conforme al Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018. Para más información consulta nuestra Política de Privacidad.</p>
+    <p>Portal Bhavantu no se hace responsable de interrupciones o errores en el acceso al sitio web, contenidos introducidos por terceros, uso indebido de los materiales ni daños derivados del uso de los contenidos con fines distintos a los informativos y educativos.</p>
+    <p>Las presentes condiciones se rigen por la legislación española. Para la resolución de cualquier controversia las partes se someten a los Juzgados y Tribunales de Madrid, España. Portal Bhavantu se reserva el derecho de modificar este Aviso Legal en cualquier momento.</p>
+    <p>Para cualquier consulta puede contactar con la responsable, Adriana Losa, con domicilio en Jornaleros 4, Ventas de Retamosa, Toledo, 45183, España, a través del correo pedidos@portalbhavantu.com. El NIF se facilitará a requerimiento de cualquier autoridad competente o usuario que lo solicite justificadamente.</p>`
+  },
+  privacidad: {
+    title: 'Política de Privacidad',
+    content: `<p>Portal Bhavantu gestiona este sitio web y la aplicación, incluyendo los datos, el contenido, las funciones, las herramientas, los productos y los servicios para ofrecerte una experiencia personalizada. Esta Política de Privacidad describe cómo recopilamos, utilizamos y divulgamos tu información personal cuando visitas, utilizas o realizas una compra a través de los Servicios o cuando te comunicas con nosotros por cualquier otro medio.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Información personal que recopilamos</h3>
+    <p>Podemos recopilar las siguientes categorías de información personal:</p>
+    <ul style="padding-left:20px;"><li>Detalles de contacto: nombre, dirección de facturación, número de teléfono y dirección de correo electrónico.</li><li>Información financiera: datos de pago procesados de forma segura a través de Stripe.</li><li>Información de la cuenta: email y preferencias de acceso.</li><li>Información sobre transacciones: compras realizadas y accesos a la plataforma.</li><li>Información del dispositivo: dirección IP, navegador y otros identificadores.</li><li>Información sobre el uso: cómo y cuándo utilizas los Servicios.</li></ul>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Cómo utilizamos tu información</h3>
+    <ul style="padding-left:20px;"><li>Prestarte los Servicios y gestionar tu acceso a la aplicación.</li><li>Procesar tus pagos y gestionar tus pedidos.</li><li>Enviarte notificaciones relacionadas con tu cuenta.</li><li>Fines de seguridad y prevención de fraudes.</li><li>Cumplir con obligaciones legales.</li></ul>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Tus derechos</h3>
+    <p>Tienes derecho a acceder, rectificar, suprimir, portar tus datos y oponerte a su tratamiento. Si resides en el EEA también tienes derecho a retirar tu consentimiento y a limitar el tratamiento. Para ejercer estos derechos escribe a <strong>pedidos@portalbhavantu.com</strong>.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Seguridad y retención</h3>
+    <p>Aplicamos medidas de seguridad para proteger tu información. Los pagos se procesan de forma cifrada. Portal Bhavantu no almacena datos de tarjetas de crédito. Conservamos tu información el tiempo necesario para prestarte los Servicios y cumplir con las obligaciones legales.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Menores</h3>
+    <p>Los Servicios no están destinados a menores. No recopilamos conscientemente información personal de personas menores de 16 años.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Contacto</h3>
+    <p>Para cualquier consulta sobre privacidad escribe a <strong>pedidos@portalbhavantu.com</strong> o dirígete a Jornaleros 4, Ventas de Retamosa, Toledo, 45183, España.</p>`
+  },
+  cookies: {
+    title: 'Política de Cookies',
+    content: `<p>En cumplimiento de lo establecido en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), y el Reglamento General de Protección de Datos (RGPD), Portal Bhavantu informa a los usuarios sobre el uso de cookies en este sitio web.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">¿Qué son las cookies?</h3>
+    <p>Las cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario cuando visita un sitio web. Permiten que el sitio recuerde información sobre tu visita, como el idioma preferido y otras opciones, lo que puede facilitar tu próxima visita y hacer que el sitio te resulte más útil.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Tipos de cookies que utilizamos</h3>
+    <p><strong>Cookies técnicas o esenciales:</strong> Son aquellas que permiten al usuario la navegación a través del sitio web y la utilización de las diferentes opciones o servicios que en él existen. Sin estas cookies el sitio web no puede funcionar correctamente. No requieren consentimiento del usuario conforme al artículo 22.2 de la LSSI-CE.</p>
+    <p><strong>Cookies de terceros para procesamiento de pagos:</strong> Utilizamos Stripe como proveedor de servicios de pago. Stripe puede instalar cookies en tu dispositivo para procesar los pagos de forma segura, verificar transacciones y prevenir el fraude. Estas cookies son necesarias para completar el proceso de compra. Puedes consultar la política de cookies de Stripe en stripe.com/cookie-settings.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">¿Cómo puedes gestionar las cookies?</h3>
+    <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu dispositivo mediante la configuración de las opciones del navegador que utilizas. Ten en cuenta que si rechazas o bloqueas determinadas cookies, es posible que algunas funcionalidades del sitio web, incluido el proceso de pago, no estén disponibles o no funcionen correctamente. Puedes acceder a la configuración de cookies desde el menú de preferencias de tu navegador (Chrome, Firefox, Safari, Edge).</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Legitimación</h3>
+    <p>La base legal para el uso de cookies técnicas es el interés legítimo del responsable del tratamiento, conforme al artículo 6.1.f del RGPD. Para el resto de cookies, la base legal es el consentimiento del usuario conforme al artículo 6.1.a del RGPD.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Conservación</h3>
+    <p>Las cookies de sesión se eliminan al cerrar el navegador. Las cookies persistentes se conservan durante el tiempo indicado en cada caso, y en ningún supuesto por un período superior al necesario para los fines del tratamiento.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Transferencias internacionales</h3>
+    <p>Stripe puede transferir datos a servidores ubicados fuera del Espacio Económico Europeo. Dichas transferencias se realizan con las garantías adecuadas conforme al RGPD, mediante cláusulas contractuales tipo aprobadas por la Comisión Europea.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Actualizaciones</h3>
+    <p>Portal Bhavantu se reserva el derecho a modificar esta Política de Cookies en cualquier momento para adaptarla a novedades legislativas o jurisprudenciales. Se recomienda revisar esta política periódicamente.</p>
+    <h3 style="color:#24423e;font-family:'Cormorant Garamond',serif;font-size:20px;margin:24px 0 8px;">Contacto</h3>
+    <p>Para cualquier consulta relacionada con el uso de cookies puedes dirigirte a <strong>pedidos@portalbhavantu.com</strong>.</p>`
+  }
+};
+
+function showLegal(type){
+  document.getElementById('legal-title').textContent = legalTexts[type].title;
+  document.getElementById('legal-content').innerHTML = legalTexts[type].content;
+  document.getElementById('legal-modal').style.display='block';
+  document.body.style.overflow='hidden';
+  return false;
+}
+function closeLegal(){
+  document.getElementById('legal-modal').style.display='none';
+  document.body.style.overflow='';
+}
+</script>
+</body>
+</html>
